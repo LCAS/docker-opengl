@@ -23,7 +23,7 @@
 	  },
   
 	// Uncomment the next line to run commands after the container is created.
-	"postCreateCommand": "bash /opt/nvidia/entrypoint.d/90-turbovnc.sh",
+	"postCreateCommand": "screen -dmS vnc bash -c 'bash /opt/nvidia/entrypoint.d/90-turbovnc.sh; while true; do sleep 100; done'",
 
 	// Configure tool-specific properties.
 	"customizations": {
