@@ -23,7 +23,7 @@
 	  },
   
 	// Uncomment the next line to run commands after the container is created.
-	"postCreateCommand": "/opt/nvidia/nvidia_entrypoint.sh",
+	"postCreateCommand": "bash /opt/nvidia/entrypoint.d/90-turbovnc.sh",
 
 	// Configure tool-specific properties.
 	"customizations": {

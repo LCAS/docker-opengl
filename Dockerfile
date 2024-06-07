@@ -164,7 +164,7 @@ RUN curl -L -O https://github.com/TurboVNC/turbovnc/releases/download/3.1.1/turb
     apt-get -y install ./turbovnc_3.1.1_amd64.deb && \
     rm turbovnc_3.1.1_amd64.deb
 RUN addgroup --gid 1002 vglusers && adduser ros video && adduser ros vglusers
-RUN apt-get -y install xfce4-session xfce4-terminal xfce4-panel python3-minimal python3-numpy unzip
+RUN apt-get -y install xfce4-session xfce4-terminal xfce4-panel python3-minimal python3-numpy unzip less tmux screen
 ENV DEBIAN_FRONTEND=
 
 # Install noVNC
