@@ -2,6 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
 	"name": "L-CAS ROS2 dev container with OpenGL via VirtualGL, TurboVNC, and CUDA",
+	"image": "lcas.lincoln.ac.uk/lcas/ros-humble-cuda-opengl:latest",
 	"build": {
 		// Sets the run context to one level up instead of the .devcontainer folder.
 		"context": "..",
