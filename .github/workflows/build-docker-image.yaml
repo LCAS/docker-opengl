@@ -22,7 +22,9 @@ jobs:
         context: .
         file: ./Dockerfile
         platforms: linux/amd64
-        push: false
-        tags: lcas.lincoln.ac.uk/lcas/ros-humble-cuda-opengl:latest
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: |
+          lcas.lincoln.ac.uk/lcas/ros-humble-cuda-opengl:${{ env.BRANCH }}
+          lcas.lincoln.ac.uk/lcas/ros-humble-cuda-opengl:latest
         build-args: |
             BRANCH=${{ env.BRANCH }}
