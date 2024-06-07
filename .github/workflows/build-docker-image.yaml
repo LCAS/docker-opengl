@@ -1,0 +1,28 @@
+name: Build Docker Images
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - '*'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: What
+      run: echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+    - name: Build Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile
+        platforms: linux/amd64
+        push: false
+        tags: lcas.lincoln.ac.uk/lcas/ros-humble-cuda-opengl:latest
+        build-args: |
+            BRANCH=${{ env.BRANCH }}

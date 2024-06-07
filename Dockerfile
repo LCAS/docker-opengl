@@ -164,7 +164,7 @@ RUN curl -L -O https://github.com/TurboVNC/turbovnc/releases/download/3.1.1/turb
     apt-get -y install ./turbovnc_3.1.1_amd64.deb && \
     rm turbovnc_3.1.1_amd64.deb
 RUN addgroup --gid 1002 vglusers && adduser ros video && adduser ros vglusers
-RUN apt-get -y install xfce4-session xfce4-terminal python3-minimal python3-numpy unzip
+RUN apt-get -y install xfce4-session xfce4-terminal xfce4-panel python3-minimal python3-numpy unzip
 ENV DEBIAN_FRONTEND=
 
 # Install noVNC
@@ -197,5 +197,14 @@ RUN echo "source /opt/ros/humble/setup.bash" > /opt/nvidia/entrypoint.d/91-ros.s
 USER ros
 
 RUN mkdir -p ~/.config/rosdistro && echo "index_url: https://raw.github.com/LCAS/rosdistro/master/index-v4.yaml" > ~/.config/rosdistro/config.yaml
+RUN sudo apt-get purge -y xfce4-screensaver
 
 ENV DISPLAY=:1
+ENV TVNC_VGL=1
+ENV VGL_ISACTIVE=1
+ENV VGL_FPS=30
+ENV VGL_COMPRESS=0
+ENV VGL_DISPLAY=egl
+ENV VGL_WM=1
+ENV VGL_PROBEGLX=0
+ENV LD_PRELOAD=libdlfaker.so:libvglfaker.so

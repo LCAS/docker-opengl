@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-dockerfile
 {
-	"name": "Existing Dockerfile",
+	"name": "L-CAS ROS2 dev container with OpenGL via VirtualGL, TurboVNC, and CUDA",
 	"build": {
 		// Sets the run context to one level up instead of the .devcontainer folder.
 		"context": "..",
@@ -13,14 +13,31 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
+	"forwardPorts": [5801],
+	"runArgs": ["--gpus", "all", "-v", "/dev/dri:/dev/dri"],
+	"portsAttributes": {
+		"5801": {
+			  "label": "desktop"
+		}
+	  },
+  
 	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "cat /etc/os-release",
+	"postCreateCommand": "/opt/nvidia/nvidia_entrypoint.sh",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
-
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"GitHub.vscode-pull-request-github",
+				"ms-vscode.cpptools",
+				"JaehyunShim.vscode-ros2",
+				"nonanonno.vscode-ros2",
+				"deitry.colcon-helper",
+				"github.vscode-github-actions"
+			]
+		}
+	},
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "ros",
 	"updateRemoteUserUID": true
