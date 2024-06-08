@@ -15,12 +15,18 @@
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [5801],
-	"runArgs": ["--gpus", "all", "-v", "/dev/dri:/dev/dri"],
+	//"runArgs": ["--gpus", "all", "-v", "/dev/dri:/dev/dri"],
 	"portsAttributes": {
 		"5801": {
-			  "label": "desktop"
+			  "label": "desktop",
+			  "onAutoForward": "openBrowser"
 		}
 	  },
+	"hostRequirements": { 
+		"gpu": "optional",
+		"cpus": 2,
+		"memory": "8gb"
+	},
   
 	// Uncomment the next line to run commands after the container is created.
 	"postCreateCommand": "screen -dmS vnc bash -c 'bash /opt/nvidia/entrypoint.d/90-turbovnc.sh; while true; do sleep 100; done'",
